@@ -1,0 +1,53 @@
+//paicode use a protobuf 3 defination as the persistent data format 
+
+syntax = "proto3";
+
+package protos;
+
+import "google/protobuf/timestamp.proto";
+
+message FuncRecord{
+	bytes     nouncekey = 1;
+	bool      isSend = 2;	
+}
+
+message UserData {
+	int64  	  pais = 1; //the amount of user owned unit of pai, use signed rather than unsigned integer to reserve possibilities
+	PublicKey pk = 2; 
+	google.protobuf.Timestamp lastActive = 3;
+	string	  managedRegion = 5;
+	FuncRecord lastFund = 6;
+	repeated  uint32 authcodes = 10; //chaincode which user has allowed to invoked the base transaction from
+}
+
+message PublicKey{
+	int32   curvetype = 1;
+	ECPoint p = 2;
+}
+
+message ECPoint{
+	bytes  x = 1;
+	bytes  y = 2;
+}
+
+//the table of registared chaincode
+message DeploySetting{
+	bool  debugMode = 1;	//user tx can be invoked without security
+	int32 networkCode = 2;
+	int64 totalPais = 10;
+	int64 unassignedPais = 11;
+	 
+}
+
+message NounceData{
+    string txid = 1;
+    google.protobuf.Timestamp nounceTime = 2;
+    FuncRecord  fromLast = 3;
+    FuncRecord  toLast = 4;
+}
+
+message RegChainCodeTable{
+
+	map<uint32, string> t = 1;
+
+}

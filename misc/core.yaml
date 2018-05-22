@@ -1,0 +1,18 @@
+
+service:
+    cliaddress: gateway.gamecenter.mobi:8000
+
+logging:
+
+    level: info
+    client: info
+
+peer:
+    fileSystemPath: '/var/gamepai'
+    gomaxprocs: -1
+    workers: 2
+    tls:
+        serviceenabled: true
+        rootcert:
+            file: '/var/gamepai/ca.crt'
+        serverhostoverride: 

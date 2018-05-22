@@ -1,0 +1,78 @@
+
+syntax = "proto3";
+
+package protos;
+
+import "persistent.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/any.proto";
+
+message Signature {
+	ECPoint p = 1;
+}
+
+//any user's transactions is form by two argument, first the UserTxHeader and second
+//a message according to the transaction type, the size of nounce MUST NOT excceed
+//the size of a hashing string
+
+message UserTxHeader {
+	string	fundId = 1;
+	bytes	nounce = 2;
+	google.protobuf.Timestamp ts = 3;
+}
+
+//user can register a public key only if it has own some pais 
+message RegPublicKey {
+	PublicKey pk = 1;
+}
+
+message AuthChaincode {
+	uint32	code = 1;
+}
+
+//fund tx can be invoked directly by user or other chaincode, 
+//if the fund tx. is invoked by user, invokeChaincode is 0
+//and Funddata is used
+//any other chaincode invoked fund tx must add their data fields
+//in Fund, or use contract field for another parsing
+message Fund {
+	uint32	 invokeChaincode = 4;
+	oneof d {
+		Funddata 			userfund = 1;
+		bool				null     = 2;
+		google.protobuf.Any contract = 3;
+	}
+}
+
+message Funddata {
+	uint32	pai		 = 1;
+	string	toUserId = 2;
+}
+
+
+//system transactions
+message PreassignData{
+	string  userid = 1;
+	int64	pais = 2;
+}
+
+message InitChaincode{
+	DeploySetting mainsetting = 1;
+	repeated PreassignData preassignedUser = 2;   
+}
+
+message RegChaincode{
+	string	chaincodeName = 1;
+	uint32	chaincodeId = 2;
+}
+
+message RecyclePai{
+	string  deadUserId = 1;
+	string  toUserId = 2;
+}
+
+message QueryUser{
+	string  userid = 1;
+}
+
+

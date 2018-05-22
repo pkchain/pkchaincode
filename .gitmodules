@@ -1,0 +1,3 @@
+[submodule "vendor/github.com/hyperledger/fabric"]
+	path = vendor/github.com/hyperledger/fabric
+	url = https://github.com/noel2004/fabric
