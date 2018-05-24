@@ -6,7 +6,7 @@ Based on the global unification of the ecology of the competition industry and t
 基于电竞产业生态的全球统一化和赛程赛规的绝对公平公正需求，为了商业模式能更好的体现客户价值、发挥企业资源和能力、有效运作盈利方式PKChain 积极应用区块链技术的特性与优点，建立了一个去中心化引擎，这个引擎是不被仸何直接利益相关团体所干预和控制的。 
 PKChain 是一个去中心化的全球区块链电竞生态引擎，同时也是一个底层区块链技术服务引擎。
 
-##The blockchain 关于区块链
+## The blockchain 关于区块链
 
 PKChain uses modular architecture to design and reuse common functional modules and interfaces. The modular approach brings good scalability, reduces the impact of module modification and upgrading, and can better apply micro services to implement the development and deployment of block chain application systems.PKChain.
 
